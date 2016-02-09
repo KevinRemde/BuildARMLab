@@ -138,7 +138,7 @@
       "metadata": {
         "description": "The size of the VM Created"
       },
-      "defaultValue": "Standard_D2"
+      "defaultValue": "Standard_DS2"
     },
     "imagePublisher": {
       "type": "string",
@@ -192,8 +192,8 @@
       "metadata": {
         "description": "The location of resources such as templates and DSC modules that the script is dependent"
       },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/active-directory-new-domain/"
-    }
+      "defaultValue": "https://raw.githubusercontent.com/KevinRemde/BuildARMLab/master/"    
+     }
   },
   "variables": {
     "adLBFE": "LBFE",
