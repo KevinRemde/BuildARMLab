@@ -3,28 +3,31 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "newStorageAccountName": {
-      "value": "GEN-UNIQUE"
+      "value": "karstdstore1"
     },
     "storageAccountType": {
-      "value": "Standard_GRS"
+      "value": "Standard_LRS"
     },
     "location": {
       "value": "West US"
     },
+    "dcVMName": {
+      "value": "DC"
+    },
     "adminUsername": {
-      "value": "azureuser"
+      "value": "Kevin"
     },
     "adminPassword": {
-      "value": "GEN-PASSWORD"
+      "value": "Passw0rd!"
     },
-    "adVMSize": {
-      "value": "Standard_D2"
+    "dcVMSize": {
+      "value": "Standard_DS2"
     },
     "domainName": {
-      "value": "mydomain.local"
+      "value": "contoso.com"
     },
-    "addnsName": {
-      "value": "GEN-UNIQUE"
+    "dcDNSName": {
+      "value": "kardcs01"
     },
     "assetLocation": {
       "value": "https://raw.githubusercontent.com/KevinRemde/BuildARMLab/master/"
