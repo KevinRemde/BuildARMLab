@@ -275,7 +275,7 @@
 			"properties" : {
 				"mode" : "Incremental",
 				"templateLink" : {
-					"uri" : "[variables('vnetTemplateUri')]",
+					"uri" : "[variables('vnetwithDNSTemplateUri')]",
 					"contentVersion" : "1.0.0.0"
 				},
 				"parameters" : {
@@ -293,15 +293,12 @@
 					},
 					"subnet1Range" : {
 						"value" : "[parameters('feSubnet')]"
-					}
+					},
 					"subnet2Name" : {
 						"value" : "[parameters('labSubnetName')]"
 					},
 					"subnet2Range" : {
 						"value" : "[parameters('labSubnet')]"
-					},
-					"dnsServerName": {
-						"value": "[parameters('dnsServerName')]"
 					},
 					"dnsServerAddress": {
 						"value": "[parameters('dnsServerAddress')]"
