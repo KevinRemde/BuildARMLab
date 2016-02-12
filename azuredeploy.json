@@ -77,20 +77,6 @@
 			},
 			"defaultValue" : "192.168.200.0/24"
 		},
-		"dnsServerName": {
-			"type": "string",
-			"metadata": {
-				"description": "The name of the DNS Server"
-			},
-			"defaultValue": "DCDNS"
-		},
-		"dnsServerAddress": {
-			"type": "string",
-			"metadata": {
-				"description": "The address of the DNS Server"
-			},
-			"defaultValue": "192.168.10.4"
-		},
 		"dcNICName" : {
 			"type" : "string",
 			"metadata" : {
@@ -275,7 +261,7 @@
 			"properties" : {
 				"mode" : "Incremental",
 				"templateLink" : {
-					"uri" : "[variables('vnetwithDNSTemplateUri')]",
+					"uri" : "[variables('vnetTemplateUri')]",
 					"contentVersion" : "1.0.0.0"
 				},
 				"parameters" : {
@@ -299,9 +285,6 @@
 					},
 					"subnet2Range" : {
 						"value" : "[parameters('labSubnet')]"
-					},
-					"dnsServerAddress": {
-						"value": "[parameters('dnsServerAddress')]"
 					}
 				}
 			}
@@ -483,10 +466,10 @@
 					"virtualNetworkAddressRange" : {
 						"value" : "[parameters('virtualNetworkAddressRange')]"
 					},
-					"subnetName" : {
+					"subnet2Name" : {
 						"value" : "[parameters('labSubnetName')]"
 					},
-					"subnetRange" : {
+					"subnet2Range" : {
 						"value" : "[parameters('labSubnet')]"
 					},
 					"DNSServerAddress" : {

@@ -53,18 +53,6 @@
 				"Description" : "The address range of the subnet created in the new VNET"
 			},
 			"defaultValue" : "192.168.10.0/24"
-		},
-		"dnsServerName" : {
-			"type" : "string",
-			"metadata" : {
-				"Description" : "The name of the DNS server for this vNet."
-			}
-		}
-		"dnsServerAddress" : {
-			"type" : "string",
-			"metadata" : {
-				"Description" : "The address of the DNS server for this vNet."
-			}
 		}
 	},
 	"resources" : [{
@@ -73,13 +61,6 @@
 			"location" : "[parameters('location')]",
 			"apiVersion" : "2015-05-01-preview",
 			"properties" : {
-				"dnsServers": [{
-						"name": "[parameters('dnsServerName')]",
-						"properties": {
-							"address": "[parameters('dnsServerAddress')]"
-						}
-					}
-				],
 				"addressSpace" : {
 					"addressPrefixes" : [
 						"[parameters('virtualNetworkAddressRange')]"
