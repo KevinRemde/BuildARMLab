@@ -28,18 +28,31 @@
       },
       "defaultValue": "10.0.0.0/16"
     },
-    "subnetName": {
+    "subnet1Name": {
       "type": "string",
       "metadata": {
         "Description": "The name of the subnet created in the new VNET"
       }
     },
-    "subnetRange": {
+    "subnet1Range": {
       "type": "string",
       "metadata": {
         "Description": "The address range of the subnet created in the new VNET"
       },
-      "defaultValue": "10.0.0.0/24"
+      "defaultValue": "192.168.200.0/24"
+    },
+    "subnet2Name": {
+      "type": "string",
+      "metadata": {
+        "Description": "The name of the subnet created in the new VNET"
+      }
+    },
+    "subnet2Range": {
+      "type": "string",
+      "metadata": {
+        "Description": "The address range of the subnet created in the new VNET"
+      },
+      "defaultValue": "192.168.10.0/24"
     }
   },
   "resources": [
@@ -56,9 +69,15 @@
         },
         "subnets": [
           {
-            "name": "[parameters('subnetName')]",
+            "name": "[parameters('subnet1Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnetRange')]"
+              "addressPrefix": "[parameters('subnet1Range')]"
+            }
+          },
+          {
+            "name": "[parameters('subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnet2Range')]"
             }
           }
         ]
