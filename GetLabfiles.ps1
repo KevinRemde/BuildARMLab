@@ -6,7 +6,7 @@ Configuration GetLabfiles
   {
 	Script ConfigureVM { 
 		SetScript = { 
-	    $dir = "c:"
+	    $dir = "c:\Labfiles"
             $FileURI = "https://raw.githubusercontent.com/KevinRemde/BuildARMLab/master/Labfiles.zip"
             New-Item $dir -ItemType directory
             $output = "$dir\Labfiles.zip"
