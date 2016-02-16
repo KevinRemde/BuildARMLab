@@ -1,37 +1,39 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "newStorageAccountName": {
-      "value": "karstdstore1"
-    },
-    "storageAccountType": {
-      "value": "Standard_LRS"
-    },
-    "location": {
-      "value": "West US"
-    },
-    "dcVMName": {
-      "value": "DC"
-    },
-    "adminUsername": {
-      "value": "labAdmin"
-    },
-    "adminPassword": {
-      "value": "Passw0rd!"
-    },
-    "dcVMSize": {
-      "value": "Standard_DS2"
-    },
-    "domainName": {
-      "value": "contoso.com"
-    },
-    "dcDNSName": {
-      "value": "kardcs01"
-    },
-    "assetLocation": {
-      "value": "https://raw.githubusercontent.com/KevinRemde/BuildARMLab/master/"
-    }
-  }
+	"$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion" : "1.0.0.0",
+	"parameters" : {
+		"location": {
+			"value" : "East US"
+		},
+		"dcVMSize" : {
+			"value" : "Standard_D2"
+		},
+		"adminVMSize" : {
+			"value" : "Standard_D2"
+		},
+		"edgeVMSize" : {
+			"value" : "Standard_D2"
+		},
+		"syncVMSize" : {
+			"value" : "Standard_D2"
+		},
+		"domainName" : {
+			"value" : "contoso.com"
+		},
+		"domainUsername" : {
+			"value" : "labAdmin"
+		},
+		"domainPassword" : {
+			"value" : "Passw0rd!"
+		},
+		"vmUsername" : {
+			"value" : "labadmin"
+		},
+		"vmPassword" : {
+			"value" : "Passw0rd!"
+		},
+		"assetLocation" : {
+			"value" : "https://rawgit.com/KevinRemde/AZInfraLabBase/master/"
+		}
+	}
 }
-
