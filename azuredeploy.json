@@ -17,7 +17,7 @@
 		},
 		"dcDNSVMName" : {
 			"type" : "string",
-			"defaultValue" : "dckar10",
+			"defaultValue" : "dckar08",
 			"metadata" : {
 				"description" : "Unique DNS prefix for the DC"
 			}
@@ -31,7 +31,7 @@
 		},
 		"adminDNSVMName": {
 			"type" : "string",
-			"defaultValue" : "adminkar10",
+			"defaultValue" : "adminkar08",
 			"metadata" : {
 				"description" : "Unique DNS prefix for the ADMIN machine"
 			}
@@ -45,7 +45,7 @@
 		},
 		"edgeDNSVMName": {
 			"type" : "string",
-			"defaultValue" : "edgekar10",
+			"defaultValue" : "edgekar08",
 			"metadata" : {
 				"description" : "Unique DNS prefix for the EDGE"
 			}
@@ -59,7 +59,7 @@
 		},
 		"syncDNSVMName": {
 			"type" : "string",
-			"defaultValue" : "synckar10",
+			"defaultValue" : "synckar08",
 			"metadata" : {
 				"description" : "Unique DNS prefix for the SYNC machine"
 			}
@@ -166,13 +166,16 @@
 		"vnetTemplateUri" : "[concat(parameters('assetLocation'),'vnet.json')]",
 		"vnetwithDNSTemplateUri" : "[concat(parameters('assetLocation'),'vnet-with-dns-server.json')]",
 		"dcModulesURL" : "[concat(parameters('assetLocation'),'CreateADPDC.ps1.zip')]",
-		"adminCustomScriptFileUri" : "[concat(parameters('assetLocation'),'ConfigAdmin.zip')]",
+		"dcConfigurationFunction" : "CreateADPDC.ps1\\CreateADPDC",
 		"adminCustomScriptFileToRun" : "ConfigAdmin.ps1",
+		"adminCustomScriptFileUri" : "[concat(parameters('assetLocation'), variables('adminCustomScriptFileToRun'))]",
 		"adminCommandToExecute" : "[concat('powershell.exe -File', ' ', variables('adminCustomScriptFileToRun'))]",
-		"edgeCustomScriptFileUri" : "[concat(parameters('assetLocation'),'ConfigEdge.zip')]",
 		"edgeCustomScriptFileToRun" : "ConfigEdge.ps1",
+		"edgeCustomScriptFileUri" : "[concat(parameters('assetLocation'), variables('edgeCustomScriptFileToRun'))]",
 		"edgeCommandToExecute" : "[concat('powershell.exe -File', ' ', variables('edgeCustomScriptFileToRun'))]",
-		"dcConfigurationFunction" : "CreateADPDC.ps1\\CreateADPDC"
+		"syncCustomScriptFileToRun" : "ConfigSync.ps1",
+		"syncCustomScriptFileUri" : "[concat(parameters('assetLocation'), variables('syncCustomScriptFileToRun'))]",
+		"syncCommandToExecute" : "[concat('powershell.exe -File', ' ', variables('syncCustomScriptFileToRun'))]"
 	},
 	"resources" : [{
 			"type" : "Microsoft.Network/publicIPAddresses",
@@ -639,8 +642,9 @@
 							"fileUris" : [
 								"[variables('adminCustomScriptFileUri')]"
 							],
-							"ommandToExecute" : "[variables('adminCommandToExecute')]"
+							"commandToExecute" : "[variables('adminCommandToExecute')]"
 						},
+						"protectedSettings" : null
 					}
 				}
 			]
@@ -775,8 +779,9 @@
 							"fileUris" : [
 								"[variables('edgeCustomScriptFileUri')]"
 							],
-							"ommandToExecute" : "[variables('edgeCommandToExecute')]"
+							"commandToExecute" : "[variables('edgeCommandToExecute')]"
 						},
+						"protectedSettings" : null
 					}
 				}
 			]
@@ -881,6 +886,28 @@
 							"Properties" : {
 								"MachineName" : "[variables('syncVMName')]"
 							}
+						},
+						"protectedSettings" : null
+					}
+				}, {		
+					"apiVersion" : "2015-05-01-preview",
+					"type" : "Microsoft.Compute/virtualMachines/extensions",
+					"name" : "[concat(variables('syncVMName'),'/RunAutomation')]",
+					"location" : "[resourceGroup().location]",
+					"dependsOn" : [
+						"[concat('Microsoft.Compute/virtualMachines/', variables('syncVMName'))]",
+						"[concat('Microsoft.Compute/virtualMachines/', variables('syncVMName'), '/extensions/getlabfiles')]"
+					],
+					"properties" : {
+						"publisher" : "Microsoft.Compute",
+						"type" : "CustomScriptExtension",
+						"typeHandlerVersion" : "1.3",
+						"autoUpgradeMinorVersion" : "true",
+						"settings" : {
+							"fileUris" : [
+								"[variables('syncCustomScriptFileUri')]"
+							],
+							"commandToExecute" : "[variables('syncCommandToExecute')]"
 						},
 						"protectedSettings" : null
 					}
